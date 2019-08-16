@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_bricks/globals/exception.dart';
-import 'package:flutter_bricks/models/daos/meal.dart';
-import 'package:flutter_bricks/models/repositories/meal_repository.dart';
+import 'package:flutter_bricks/models/meal/meal.dart';
+import 'package:flutter_bricks/repositories/meal_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
@@ -23,6 +23,7 @@ class MealBloc extends Bloc<MealEvent, MealState> {
     try{
 
       if (event is FetchMeals) yield* _loadMeals();
+      if (event is FetchOneMeal) yield* _loadOneMeal(event.id);
     
     } on UnAuthorizeException catch(error){
       yield MealForbid(error: error.message);
@@ -37,5 +38,10 @@ class MealBloc extends Bloc<MealEvent, MealState> {
   Stream<MealState> _loadMeals() async*{
     List<Meal> meals = await mealRepository.getMeals();
     yield MealLoaded(meals);
+  }
+
+  Stream<MealState> _loadOneMeal(String id) async*{
+    Meal meal = await mealRepository.getMeal(id);
+    yield MealLoaded(meal);
   }
 }

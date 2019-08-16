@@ -1,4 +1,3 @@
-import 'package:flutter_bricks/models/daos/meal.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
@@ -17,12 +16,12 @@ class MealLoading extends MealState {
 }
 
 class MealLoaded extends MealState {
-  final List<Meal> meals;
+  final meal;
 
-  MealLoaded(this.meals): super([meals]);
+  MealLoaded(this.meal): super([meal]);
 
   @override
-  String toString() => 'MealLoaded{${meals.toString()}}';
+  String toString() => 'MealLoaded{${meal.toString()}}';
 }
 
 class MealNoResult extends MealState {

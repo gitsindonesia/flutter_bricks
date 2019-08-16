@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bricks/models/daos/meal.dart';
+import 'package:flutter_bricks/models/meal/meal.dart';
 
 class MealItem extends StatelessWidget{
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bricks/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bricks/blocs/login/login_bloc.dart';
-import 'package:flutter_bricks/models/repositories/user_repository.dart';
+import 'package:flutter_bricks/repositories/user_repository.dart';
 import 'widgets/login_form.dart';
 
 class LoginScreen extends StatelessWidget {

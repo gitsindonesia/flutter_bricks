@@ -4,12 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bricks/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bricks/blocs/auth/bloc.dart';
+import 'package:flutter_bricks/repositories/user_repository.dart';
 import 'package:flutter_bricks/screens/home/home_screen.dart';
 import 'package:flutter_bricks/screens/loading/loading_screen.dart';
 import 'package:flutter_bricks/screens/login/login_screen.dart';
 import 'package:flutter_bricks/screens/splash/splash_screen.dart';
 
-import 'models/repositories/user_repository.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -56,19 +56,11 @@ class App extends StatelessWidget {
       home: BlocBuilder(
         bloc: BlocProvider.of<AuthenticationBloc>(context),
         builder: (BuildContext context, AuthenticationState state) {
-          if (state is AuthenticationUninitialized) {
-            return SplashScreen();
-          }
-          if (state is AuthenticationAuthenticated) {
-            return HomeScreen();
-          }
-          if (state is AuthenticationUnauthenticated) {
+          if (state is AuthenticationUninitialized) return SplashScreen();
+          if (state is AuthenticationAuthenticated) return HomeScreen();
+          if (state is AuthenticationLoading) return LoadingScreen();
+          if (state is AuthenticationUnauthenticated)
             return LoginScreen(userRepository: userRepository);
-          }
-          if (state is AuthenticationLoading) {
-            return LoadingScreen();
-          }
-
           return Scaffold();
         },
       ),

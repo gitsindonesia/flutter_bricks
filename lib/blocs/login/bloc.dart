@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bricks/blocs/auth/auth_bloc.dart';
-import 'package:flutter_bricks/models/repositories/user_repository.dart';
+import 'package:flutter_bricks/repositories/user_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
