@@ -10,7 +10,7 @@ class MealAPIProvider{
   final http = RestAPI.client();
 
   Future<List<Meal>> fetchMeals() async{
-    final url = baseUrl + "latest.php";
+    final url = baseUrl + "search.php?f=a";
     final response = await http.get(url);
     return RestAPI.responseJSON(response,
         onHttpOk: (json){
